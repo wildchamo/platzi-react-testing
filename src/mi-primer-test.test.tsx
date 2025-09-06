@@ -6,4 +6,10 @@ describe("mi primer test", () => {
     const res = suma(1, 1);
     expect(res).toBe(2);
   });
+
+  it("dos textos iguales", () => {
+    const texto1 = "platzi conf 2025";
+    const texto2 = "platzi conf 2025";
+    expect(texto1).toBe(texto2);
+  });
 });
