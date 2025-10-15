@@ -1,7 +1,7 @@
 type CalculatorProps = {
   a: number;
   b: number;
-  operation: "add" | "subtract" | "multiply" | "divide" | string;
+  operation: "add" | "subtract" | "multiply" | "divide";
 };
 
 export const Calculator = ({ a, b, operation }: CalculatorProps) => {

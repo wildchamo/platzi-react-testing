@@ -7,25 +7,25 @@ describe("<Calculator />", () => {
     {
       a: 1,
       b: 2,
-      operation: "add",
+      operation: "add" as const,
       expected: 3,
     },
     {
       a: 1,
       b: 2,
-      operation: "subtract",
+      operation: "subtract" as const,
       expected: -1,
     },
     {
       a: 1,
       b: 2,
-      operation: "multiply",
+      operation: "multiply" as const,
       expected: 2,
     },
     {
       a: 1,
       b: 2,
-      operation: "divide",
+      operation: "divide" as const,
       expected: 0.5,
     },
   ];
