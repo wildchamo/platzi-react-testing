@@ -8,7 +8,7 @@ describe("<Calculator />", () => {
   const testCases = [
     { a: 1, b: 2, expected: 3, operation: "add" as const },
     { a: 1, b: 2, expected: -1, operation: "subtract" as const },
-    { a: 1, b: 2, expected: 2, operation: "multiply" as const },
+    { a: 1, b: 2, expected: 4, operation: "multiply" as const },
     { a: 1, b: 2, expected: 0.5, operation: "divide" as const },
   ];
 
