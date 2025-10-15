@@ -27,27 +27,27 @@ Through this project, students will gain hands-on experience in writing effectiv
 
 1. **superadmin**
 
-   - Email: superadmin@example.com
+   - Email: <superadmin@example.com>
    - Password: superadmin123!
 
 2. **visualizer1**
 
-   - Email: visualizer1@example.com
+   - Email: <visualizer1@example.com>
    - Password: vis1pass456@
 
 3. **visualizer2**
 
-   - Email: visualizer2@example.com
+   - Email: <visualizer2@example.com>
    - Password: vis2pass789#
 
 4. **visualizer3**
 
-   - Email: visualizer3@example.com
+   - Email: <visualizer3@example.com>
    - Password: vis3pass101$
 
 5. **visualizer4**
 
-   - Email: visualizer4@example.com
+   - Email: <visualizer4@example.com>
    - Password: vis4pass202%
 
 6. **Unknown User**
@@ -70,13 +70,13 @@ Through this project, students will gain hands-on experience in writing effectiv
 
 Install dependencies:
 
-```
+```bash
 yarn
 ```
 
 or if you use npm:
 
-```
+```bash
 npm install
 ```
 
@@ -84,12 +84,12 @@ npm install
 
 To start both the development server and the mock API, run:
 
-```
+```bash
 yarn start
 ```
 
 or if you use npm:
 
-```
+```bash
 npm run start
 ```
