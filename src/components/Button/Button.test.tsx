@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { Button } from "./Button";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, act } from "@testing-library/react";
 
 // arange
 
@@ -24,6 +24,10 @@ describe("<Button />", () => {
 
     const button = screen.getByTestId("button123");
 
-    expect(button).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(button);
+    });
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
