@@ -73,6 +73,7 @@ export const Login: React.FC = () => {
           value={formData.username}
           onChange={handleInputChange}
           className={classes.Login__input}
+          data-testid="username"
         />
         <form onSubmit={handleSubmit}>
           <div className={classes.Login__passwordContainer}>
@@ -83,6 +84,7 @@ export const Login: React.FC = () => {
               value={formData.password}
               onChange={handleInputChange}
               className={classes.Login__input}
+              data-testid="password"
             />
             <button
               type="button"
