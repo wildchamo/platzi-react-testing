@@ -1,4 +1,4 @@
-import { it, describe, expect, vi, Mock } from "vitest";
+import { it, describe, expect, vi, type Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Login } from "./Login";
 import { MemoryRouter } from "react-router-dom";
