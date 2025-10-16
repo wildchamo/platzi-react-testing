@@ -49,8 +49,8 @@ describe("<Login />", () => {
 
     const buttonLogin = screen.getByRole("button", { name: "Login" });
 
-    await user.type(usernameInput, "test");
-    await user.type(passwordInput, "test");
+    await user.type(usernameInput, "wrong username");
+    await user.type(passwordInput, "wrong password");
     await user.click(buttonLogin);
     const error = screen.getByText("Invalid credentials");
     expect(error).toBeInTheDocument();
