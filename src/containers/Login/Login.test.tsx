@@ -83,6 +83,22 @@ describe("<Login />", () => {
 
     await waitFor(() => {
       expect(mockGetAuth).toHaveBeenCalledWith("validUser", "validPassword");
+      expect(mockNavigate).toHaveBeenCalledWith("/orders");
     });
+  });
+
+  it("Should redirect to /orders if credentials are correct", async () => {
+    const user = userEvent.setup();
+
+    LoginComponent();
+
+    const passwordInput = screen.getByTestId("password");
+    const buttonTogglePassword = screen.getByTestId("toggle-password");
+
+    await user.type(passwordInput, "validPassword");
+    await user.click(buttonTogglePassword);
+
+    expect(passwordInput).toHaveAttribute("type", "text");
+    expect(buttonTogglePassword.textContent).toBe("hide");
   });
 });

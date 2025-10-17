@@ -93,6 +93,7 @@ export const Login: React.FC = () => {
               type="button"
               onClick={togglePasswordVisibility}
               className={classes.Login__togglePassword}
+              data-testid="toggle-password"
             >
               {showPassword ? "hide" : "show"}
             </button>
