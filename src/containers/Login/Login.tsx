@@ -21,7 +21,10 @@ const mockVisualuizer = {
 };
 
 export const Login: React.FC = () => {
-  const [formData, setFormData] = useState<LoginFormData>(mockSuperAdmin);
+  const [formData, setFormData] = useState<LoginFormData>({
+    username: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();

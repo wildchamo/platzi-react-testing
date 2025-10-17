@@ -1,10 +1,21 @@
 import { it, describe, expect, vi, type Mock } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Login } from "./Login";
 import { MemoryRouter } from "react-router-dom";
 import { SessionProvider } from "../../context/AuthContext";
 import { getAuth } from "../../services/getAuth";
 import userEvent from "@testing-library/user-event";
+
+const mockNavigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
+
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
 
 vi.mock("../../services/getAuth", () => {
   return {
@@ -14,15 +25,19 @@ vi.mock("../../services/getAuth", () => {
 
 const mockGetAuth = getAuth as Mock;
 
+const LoginComponent = () => {
+  return render(
+    <SessionProvider>
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    </SessionProvider>
+  );
+};
+
 describe("<Login />", () => {
   it("Inputs should be rendered", () => {
-    render(
-      <SessionProvider>
-        <MemoryRouter>
-          <Login />
-        </MemoryRouter>
-      </SessionProvider>
-    );
+    LoginComponent();
 
     const usernameInput = screen.getByTestId("username");
     const passwordInput = screen.getByTestId("password");
@@ -36,13 +51,7 @@ describe("<Login />", () => {
   it("Error state", async () => {
     const user = userEvent.setup();
     mockGetAuth.mockRejectedValueOnce(new Error("Invalid credentials"));
-    render(
-      <SessionProvider>
-        <MemoryRouter>
-          <Login />
-        </MemoryRouter>
-      </SessionProvider>
-    );
+    LoginComponent();
 
     const usernameInput = screen.getByTestId("username");
     const passwordInput = screen.getByTestId("password");
@@ -54,5 +63,26 @@ describe("<Login />", () => {
     await user.click(buttonLogin);
     const error = screen.getByText("Invalid credentials");
     expect(error).toBeInTheDocument();
+  });
+
+  it("Should redirect to /orders if credentials are correct", async () => {
+    const user = userEvent.setup();
+    mockGetAuth.mockResolvedValueOnce({
+      success: true,
+    });
+
+    LoginComponent();
+
+    const usernameInput = screen.getByTestId("username");
+    const passwordInput = screen.getByTestId("password");
+    const buttonLogin = screen.getByRole("button", { name: "Login" });
+
+    await user.type(usernameInput, "validUser");
+    await user.type(passwordInput, "validPassword");
+    await user.click(buttonLogin);
+
+    await waitFor(() => {
+      expect(mockGetAuth).toHaveBeenCalledWith("validUser", "validPassword");
+    });
   });
 });
