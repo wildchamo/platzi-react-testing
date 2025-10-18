@@ -88,9 +88,21 @@ describe("<Orders />", () => {
       const adminPanel = screen.getByTestId("admin-panel");
       expect(adminPanel).toBeInTheDocument();
 
-      const { totalOrders } = getSummaryOrders(mockOrders);
+      const { totalOrders, totalValue, averageOrderValue } =
+        getSummaryOrders(mockOrders);
+
       const totalOrdersElement = screen.getByTestId("total-orders");
       expect(totalOrdersElement).toHaveTextContent(totalOrders.toString());
+
+      const totalValueElement = screen.getByTestId("total-value");
+      expect(totalValueElement).toHaveTextContent(totalValue.toString());
+
+      const averageOrderValueElement = screen.getByTestId(
+        "average-order-value"
+      );
+      expect(averageOrderValueElement).toHaveTextContent(
+        averageOrderValue.toString()
+      );
     });
   });
 });
