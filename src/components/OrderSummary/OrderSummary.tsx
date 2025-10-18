@@ -8,7 +8,7 @@ export const OrderSummary: React.FC<{ orders: Order[] }> = ({ orders }) => {
   const summary = useMemo(() => getSummaryOrders(orders), [orders]);
 
   return (
-    <div className={styles.OrdersSummary}>
+    <div className={styles.OrdersSummary} data-testid="admin-panel">
       <h3 className={styles.OrdersSummary__title}>
         Orders Summary (Only admins)
       </h3>
