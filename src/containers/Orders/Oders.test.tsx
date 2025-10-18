@@ -4,6 +4,7 @@ import { Orders } from "./Orders";
 import { MemoryRouter } from "react-router-dom";
 import { SessionProvider, useSession } from "../../context/AuthContext";
 import { getOrders } from "../../services/getOrders";
+import { getSummaryOrders } from "../../utils/sumamry";
 
 const mockOrders = [
   {
@@ -86,6 +87,10 @@ describe("<Orders />", () => {
     await waitFor(() => {
       const adminPanel = screen.getByTestId("admin-panel");
       expect(adminPanel).toBeInTheDocument();
+
+      const { totalOrders } = getSummaryOrders(mockOrders);
+      const totalOrdersElement = screen.getByTestId("total-orders");
+      expect(totalOrdersElement).toHaveTextContent(totalOrders.toString());
     });
   });
 });
